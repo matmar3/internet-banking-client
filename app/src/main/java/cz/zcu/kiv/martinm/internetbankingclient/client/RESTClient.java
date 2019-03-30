@@ -1,93 +1,84 @@
 package cz.zcu.kiv.martinm.internetbankingclient.client;
 
+import android.content.Context;
 import android.util.Log;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.ResourceAccessException;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
-import java.net.URI;
+import java.io.IOException;
 import java.util.Map;
-import java.util.Optional;
+import java.util.Objects;
+
+import okhttp3.CookieJar;
+import okhttp3.FormBody;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public abstract class RESTClient implements WebClient {
 
+    private OkHttpClient httpClient;
+
+    RESTClient(Context context) {
+        CookieJar cookieJar =
+                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+
+        httpClient = new OkHttpClient.Builder()
+                .cookieJar(cookieJar)
+                .build();
+    }
+
     @Override
-    public Optional<HttpResponse> doGet(String targetUrl, Map<String, String> params) {
-        // Populate the HTTP Basic Authentitcation header with the username and password
-        HttpHeaders requestHeaders = new HttpHeaders();
-
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        if (params != null) map.setAll(params);
-
-        URI buildedUrl = UriComponentsBuilder.fromHttpUrl(targetUrl)
-                .queryParams(map)
-                .build()
-                .encode()
-                .toUri();
-
-        // create request
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, requestHeaders);
-
-        // Create a new RestTemplate instance
-        RestTemplate restTemplate = new RestTemplate();
+    public Response doGet(String targetUrl, Map<String, String> params) {
+        Request request = new Request.Builder()
+                .url(buildUrl(targetUrl, params))
+                .build();
 
         try {
-            // Make the network request
-            Log.d(this.getClass().getSimpleName(), targetUrl);
-            ResponseEntity<String> response = restTemplate.exchange(buildedUrl, HttpMethod.GET, request, String.class);
+            return httpClient.newCall(request).execute();
 
-            return Optional.of(new DefaultHttpResponse(response.getStatusCode(), response.getBody()));
-        } catch (HttpClientErrorException e) {
+        } catch (IOException e) {
             Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage(), e);
 
-            return Optional.empty();
-        } catch (ResourceAccessException e) {
-            Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage(), e);
-
-            return Optional.empty();
+            return null;
         }
     }
 
     @Override
-    public Optional<HttpResponse> doPost(String targetUrl, Map<String, String> data) {
-        // Populate the HTTP Basic Authentitcation header with the username and password
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
-        //requestHeaders.set("Set-Cookie", "JSESSIONID=" + sessionId);
+    public Response doPost(String targetUrl, Map<String, String> data) {
+        Request request = new Request.Builder()
+                .url(targetUrl)
+                .post(buildFormBody(data))
+                .build();
 
-        // map data
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.setAll(data);
-
-        // create request
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, requestHeaders);
-
-        // Create a new RestTemplate instance
-        RestTemplate restTemplate = new RestTemplate();
         try {
-            // Make the network request
-            Log.d(this.getClass().getSimpleName(), targetUrl);
-            ResponseEntity<String> response = restTemplate.postForEntity(targetUrl, request, String.class);
+            return  httpClient.newCall(request).execute();
 
-            return Optional.of(new DefaultHttpResponse(response.getStatusCode(), response.getBody()));
-        } catch (HttpClientErrorException e) {
+        } catch (IOException e) {
             Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage(), e);
 
-            return Optional.empty();
-        } catch (ResourceAccessException e) {
-            Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage(), e);
-
-            return Optional.empty();
+            return null;
         }
+    }
+
+    private HttpUrl buildUrl(String targetUrl, Map<String, String> params) {
+        HttpUrl.Builder prototype =
+                Objects.requireNonNull(HttpUrl.parse(targetUrl)).newBuilder();
+
+        if (params != null) params.forEach(prototype::addQueryParameter);
+
+        return prototype.build();
+    }
+
+    private RequestBody buildFormBody(Map<String, String> data) {
+        FormBody.Builder prototype = new FormBody.Builder();
+        if (data != null) data.forEach(prototype::add);
+
+        return prototype.build();
     }
 
 }
