@@ -4,4 +4,10 @@
     <string name="username">Uživatelské jméno</string>
     <string name="password">Heslo</string>
     <string name="signup">Přihlásit se</string>
+    <string name="row_item_balance_label">Zůstatek:</string>
+    <string name="row_item_accountNumber_value">account number</string>
+    <string name="row_item_balance_value">balance</string>
+    <string name="row_item_cardNumber_value">card number</string>
+    <string name="row_item_accountNumber_label">Číslo účtu:</string>
+    <string name="row_item_cardNumber_label">Kreditní karta:</string>
 </resources>

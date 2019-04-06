@@ -1,9 +1,9 @@
 package cz.zcu.kiv.martinm.internetbankingclient;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.support.v7.app.AppCompatActivity;
 
-public abstract class AsyncActivity extends Activity {
+public abstract class AsyncActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 

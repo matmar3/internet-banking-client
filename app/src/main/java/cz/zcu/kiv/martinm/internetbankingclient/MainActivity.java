@@ -2,6 +2,7 @@ package cz.zcu.kiv.martinm.internetbankingclient;
 
 import static cz.zcu.kiv.martinm.internetbankingclient.client.Routes.*;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -9,15 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import cz.zcu.kiv.martinm.internetbankingclient.cache.ApplicationCache;
 import cz.zcu.kiv.martinm.internetbankingclient.client.InternetBankingRESTClient;
-import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.User;
-import cz.zcu.kiv.martinm.internetbankingclient.parser.AccountJSONParser;
 import cz.zcu.kiv.martinm.internetbankingclient.parser.UserJSONParser;
 
 public class MainActivity extends AsyncActivity {
@@ -67,11 +62,7 @@ public class MainActivity extends AsyncActivity {
 
                 responseEntity = client.fetchResponseEntity(getRESTApi() + REST_API_PROFILE);
                 User user = new UserJSONParser().parse(responseEntity);
-
-                responseEntity = client.fetchResponseEntity(getRESTApi() + REST_API_ACCOUNTS);
-
-                System.out.println(user);
-                System.out.println(user.getAccounts());
+                ApplicationCache.getInstance().put("user", user);
             }
 
             return isLoggedIn;
@@ -82,6 +73,12 @@ public class MainActivity extends AsyncActivity {
             dismissProgressDialog();
             if (!result) {
                 displayResponse("Wrong username or password.");
+            }
+            else {
+                if (ApplicationCache.getInstance().isExists("user")) {
+                    Intent intent = new Intent(getApplicationContext(), AccountOverviewActivity.class);
+                    startActivity(intent);
+                }
             }
         }
 
