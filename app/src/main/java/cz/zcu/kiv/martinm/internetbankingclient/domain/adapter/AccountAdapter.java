@@ -1,5 +1,7 @@
 package cz.zcu.kiv.martinm.internetbankingclient.domain.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,13 +12,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import cz.zcu.kiv.martinm.internetbankingclient.R;
+import cz.zcu.kiv.martinm.internetbankingclient.TransactionsActivity;
+import cz.zcu.kiv.martinm.internetbankingclient.cache.ApplicationCache;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
 
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountViewHolder> {
 
+    private Context context;
+
     private List<Account> accounts;
 
-    static class AccountViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class AccountViewHolder extends RecyclerView.ViewHolder {
         TextView accountNumber;
         TextView cardNumber;
         TextView balance;
@@ -27,14 +33,10 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
             this.cardNumber = itemView.findViewById(R.id.card_number);
             this.balance = itemView.findViewById(R.id.balance);
         }
-
-        @Override
-        public void onClick(View v) {
-
-        }
     }
 
-    public AccountAdapter(List<Account> accounts) {
+    public AccountAdapter(Context context, List<Account> accounts) {
+        this.context = context.getApplicationContext();
         this.accounts = accounts;
     }
 
@@ -52,6 +54,11 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     public void onBindViewHolder(@NonNull AccountViewHolder holder, int position) {
         Account account = accounts.get(position);
 
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, TransactionsActivity.class);
+            ApplicationCache.getInstance().put("selectedAccount", account);
+            context.startActivity(intent);
+        });
         holder.accountNumber.setText(account.getAccountNumber());
         holder.cardNumber.setText(account.getCardNumber());
         holder.balance.setText(

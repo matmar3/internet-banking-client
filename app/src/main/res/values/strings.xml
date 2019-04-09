@@ -10,4 +10,16 @@
     <string name="row_item_cardNumber_value">card number</string>
     <string name="row_item_accountNumber_label">Číslo účtu:</string>
     <string name="row_item_cardNumber_label">Kreditní karta:</string>
+    <string name="row_item_transaction"><![CDATA[from -> to]]></string>
+    <string name="row_item_amount">amount</string>
+    <string name="row_item_transaction_label">Platba</string>
+    <string name="wor_item_transaction_label_posVal">Příchozí platba</string>
+    <string name="wor_item_transaction_label_consVal">Odchozí platba</string>
+    <string name="row_item_transaction_date">2019-10-10</string>
+    <string name="row_item_transaction_acc_label">Z účtu</string>
+    <string name="row_item_transaction_acc_from">Z účtu:</string>
+    <string name="row_item_transaction_acc_to">Na účet:</string>
+    <string name="pick_account">Vyberte účet:</string>
+    <string name="show_detail">Zobrazit</string>
+    <string name="amount_label">Částka:</string>
 </resources>

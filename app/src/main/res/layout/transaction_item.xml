@@ -17,73 +17,66 @@
             android:padding="12dp">
 
             <TextView
-                android:id="@+id/account_number_label"
+                android:id="@+id/transaction_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/row_item_accountNumber_label"
+                android:text="@string/row_item_amount"
                 android:textColor="@android:color/black" />
 
-            <TextView
-                android:id="@+id/account_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/account_number_label"
-                android:text="@string/row_item_accountNumber_value" />
 
             <TextView
-                android:id="@+id/card_number_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/account_number_label"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/row_item_cardNumber_label"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/card_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/account_number"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/card_number_label"
-                android:text="@string/row_item_cardNumber_value" />
-
-            <TextView
-                android:id="@+id/balance_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card_number_label"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/row_item_balance_label"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/balance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/card_number"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/balance_label"
-                android:text="@string/row_item_balance_value" />
-
-            <TextView
-                android:id="@+id/item_info"
+                android:id="@+id/transaction_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="@string/show_detail" />
+                android:layout_alignParentTop="true"
+                android:text="@string/row_item_transaction_date" />
+
+
+            <TextView
+                android:id="@+id/transaction_acc_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/transaction_label"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/transaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/transaction_label"
+                android:layout_toEndOf="@id/transaction_acc_label"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/row_item_transaction" />
+
+            <TextView
+                android:id="@+id/amount_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/transaction"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/amount_label"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/transaction_acc_label"
+                android:layout_toEndOf="@id/amount_label"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/row_item_transaction_label" />
 
         </RelativeLayout>
 

@@ -5,6 +5,8 @@ public class Routes {
     public static final String HOST_NAME = "https://internet-banking-app.herokuapp.com/";
     public static final String REST_API_PROFILE = "profile";
     public static final String REST_API_ACCOUNTS = "accounts";
+    public static final String REST_API_TRANSACTIONS = "account/%d/transactions?page=%d";
+    public static final String REST_API_TRANSACTIONS_COUNT = "account/%d/transactions/count";
 
     private static final String SIGN_IN = "login-process";
     private static final String LOGGED_IN = "ib/";

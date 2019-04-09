@@ -5,20 +5,21 @@ import android.os.StrictMode;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializer;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import cz.zcu.kiv.martinm.internetbankingclient.cache.ApplicationCache;
-import cz.zcu.kiv.martinm.internetbankingclient.cache.StorageUnit;
 import cz.zcu.kiv.martinm.internetbankingclient.client.InternetBankingRESTClient;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
-import cz.zcu.kiv.martinm.internetbankingclient.domain.User;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.adapter.AccountAdapter;
 
 import static cz.zcu.kiv.martinm.internetbankingclient.client.Routes.REST_API_ACCOUNTS;
@@ -37,8 +38,7 @@ public class AccountOverviewActivity extends AsyncActivity {
         setContentView(R.layout.activity_account_overview);
         recyclerView = findViewById(R.id.account_recycler_view);
 
-        User user = (User) ApplicationCache.getInstance().get("user");
-        getSupportActionBar().setTitle(user.getFirstName() + " " + user.getLastName());
+        setTitle("Přehled účtů");
 
         StrictMode.ThreadPolicy policy = new
                 StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -65,7 +65,7 @@ public class AccountOverviewActivity extends AsyncActivity {
         }
 
         // specify an adapter (see also next example)
-        adapter = new AccountAdapter(listItems);
+        adapter = new AccountAdapter(this, listItems);
         recyclerView.setAdapter(adapter);
     }
 
@@ -82,7 +82,10 @@ public class AccountOverviewActivity extends AsyncActivity {
 
             String responseEntity = client.fetchResponseEntity(getRESTApi() + REST_API_ACCOUNTS);
 
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(Date.class, (JsonDeserializer<Date>) (json, typeOfT, context) -> new Date(json.getAsJsonPrimitive().getAsLong()))
+                    .registerTypeAdapter(Date.class, (JsonSerializer<Date>) (date, type, jsonSerializationContext) -> new JsonPrimitive(date.getTime()))
+                    .create();
             Type listType = new TypeToken<List<Account>>() {}.getType();
 
             return gson.fromJson(responseEntity, listType);

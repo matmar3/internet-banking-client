@@ -1,9 +1,8 @@
 package cz.zcu.kiv.martinm.internetbankingclient;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
 
-public abstract class AsyncActivity extends AppCompatActivity {
+public abstract class AsyncActivity extends BaseActivity {
 
     private ProgressDialog progressDialog;
 
@@ -16,7 +15,7 @@ public abstract class AsyncActivity extends AppCompatActivity {
     }
 
     public void showLoadingProgressDialog() {
-        this.showProgressDialog("Loading. Please wait...");
+        this.showProgressDialog("Načítání ...");
     }
 
     public void showProgressDialog(CharSequence message) {
