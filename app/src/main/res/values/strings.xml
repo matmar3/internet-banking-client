@@ -22,4 +22,15 @@
     <string name="pick_account">Vyberte účet:</string>
     <string name="show_detail">Zobrazit</string>
     <string name="amount_label">Částka:</string>
+    <string name="go_to_transaction">Vytvořit transakci</string>
+    <string name="newAccountNumber">Číslo účtu příjemnce</string>
+    <string name="newAmount">Částka:</string>
+    <string name="newDueDate">Datum splatnosti:</string>
+    <string name="newAmountValue">Částka</string>
+    <string name="newDueDateValue">dd.mm.rrrr</string>
+    <string name="newConstant">Konstantní symbol:</string>
+    <string name="newVariable">Variabilní symbol:</string>
+    <string name="newMessage">Zpráva pro příjemce:</string>
+    <string name="newSpecific">Specifický symbol:</string>
+    <string name="performTransaction">Provést platbu</string>
 </resources>

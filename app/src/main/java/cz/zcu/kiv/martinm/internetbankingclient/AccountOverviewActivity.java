@@ -1,10 +1,12 @@
 package cz.zcu.kiv.martinm.internetbankingclient;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,6 +19,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import cz.zcu.kiv.martinm.internetbankingclient.client.InternetBankingRESTClient;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
@@ -97,6 +100,16 @@ public class AccountOverviewActivity extends AsyncActivity {
             setAccounts(result);
         }
 
+    }
+
+    public void handleCreateTransactionButton(View view) {
+        Intent intent = new Intent(getApplicationContext(), TransactionFormActivity.class);
+
+        ArrayList<String> accounts = listItems.stream()
+                .map(Account::getAccountNumber).collect(Collectors.toCollection(ArrayList::new));
+
+        intent.putStringArrayListExtra("accounts", accounts);
+        startActivity(intent);
     }
 
 }

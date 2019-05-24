@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TransactionFormActivity">
+
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="715dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/senderLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/row_item_transaction_acc_from" />
+
+        <Spinner
+            android:id="@+id/newSender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/receiverLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/row_item_transaction_acc_to" />
+
+        <EditText
+            android:id="@+id/newReceiver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/newAccountNumber"
+            android:ems="10"
+            android:hint="@string/newAccountNumber"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/amountLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newAmount" />
+
+        <EditText
+            android:id="@+id/newAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/newAmountValue"
+            android:ems="10"
+            android:hint="@string/newAmountValue"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/newDateLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newDueDate" />
+
+        <EditText
+            android:id="@+id/newDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/newDueDateValue"
+            android:ems="10"
+            android:hint="@string/newDueDateValue"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/newConstantLabel"
+            android:labelFor="@+id/newConstant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newConstant" />
+
+        <EditText
+            android:id="@+id/newConstant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/newVariableLabel"
+            android:labelFor="@+id/newVariable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newVariable" />
+
+        <EditText
+            android:id="@+id/newVariable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/newSpecificLabel"
+            android:labelFor="@+id/newSpecific"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newSpecific" />
+
+        <EditText
+            android:id="@+id/newSpecific"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/newMessageLabel"
+            android:labelFor="@+id/newMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newMessage" />
+
+        <EditText
+            android:id="@+id/newMessage"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:inputType="text|textMultiLine"
+            android:autofillHints=""
+            android:ems="10" />
+
+        <Button
+            android:id="@+id/performTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="handlePerformTransaction"
+            android:text="@string/performTransaction" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

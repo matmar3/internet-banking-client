@@ -56,6 +56,26 @@ public class InternetBankingRESTClient extends RESTClient {
         return null;
     }
 
+    public String performTransaction(int accountID, String newTransaction) {
+        String URL = String.format(Routes.getRESTApi() + Routes.REST_API_NEW_TRANSACTION, accountID);
+
+        Response response = doPostJSON(URL, newTransaction);
+
+        if (response != null) {
+            ResponseBody responseBody = response.body();
+
+            if (responseBody != null) {
+                try {
+                    return responseBody.string();
+                } catch (IOException e) {
+                    Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage(), e);
+                }
+            }
+        }
+
+        return null;
+    }
+
     private boolean isLoggedIn(String url) {
         return !url.equals(Routes.getLogin());
     }

@@ -14,6 +14,7 @@ import java.util.Objects;
 import okhttp3.CookieJar;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -53,6 +54,26 @@ public abstract class RESTClient implements WebClient {
         Request request = new Request.Builder()
                 .url(targetUrl)
                 .post(buildFormBody(data))
+                .build();
+
+        try {
+            return  httpClient.newCall(request).execute();
+
+        } catch (IOException e) {
+            Log.e(this.getClass().getSimpleName(), e.getLocalizedMessage(), e);
+
+            return null;
+        }
+    }
+
+    public Response doPostJSON(String targetUrl, String json) {
+        RequestBody body = RequestBody.create(
+                MediaType.parse("application/json; charset=utf-8"),
+                json
+        );
+        Request request = new Request.Builder()
+                .url(targetUrl)
+                .post(body)
                 .build();
 
         try {

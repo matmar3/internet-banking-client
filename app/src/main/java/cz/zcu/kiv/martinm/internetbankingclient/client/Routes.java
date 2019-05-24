@@ -7,6 +7,7 @@ public class Routes {
     public static final String REST_API_ACCOUNTS = "accounts";
     public static final String REST_API_TRANSACTIONS = "account/%d/transactions?page=%d";
     public static final String REST_API_TRANSACTIONS_COUNT = "account/%d/transactions/count";
+    public static final String REST_API_NEW_TRANSACTION = "create-transaction";
 
     private static final String SIGN_IN = "login-process";
     private static final String LOGGED_IN = "ib/";
