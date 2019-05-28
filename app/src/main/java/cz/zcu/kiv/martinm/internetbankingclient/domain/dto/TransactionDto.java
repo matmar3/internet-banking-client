@@ -3,6 +3,9 @@ package cz.zcu.kiv.martinm.internetbankingclient.domain.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Transaction values retrieved from form.
+ */
 public class TransactionDto {
 
     private String receiverAccountNumber;

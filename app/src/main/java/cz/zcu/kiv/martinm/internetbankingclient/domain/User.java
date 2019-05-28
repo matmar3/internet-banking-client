@@ -3,6 +3,9 @@ package cz.zcu.kiv.martinm.internetbankingclient.domain;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * Object for logged user.
+ */
 public class User implements DataTransferObject<Integer> {
 
     public User() {

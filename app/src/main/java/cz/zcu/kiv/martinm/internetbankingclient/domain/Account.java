@@ -2,6 +2,9 @@ package cz.zcu.kiv.martinm.internetbankingclient.domain;
 
 import java.math.BigDecimal;
 
+/**
+ * Specific account informations.
+ */
 public class Account implements DataTransferObject<Integer> {
 
     public Account() {

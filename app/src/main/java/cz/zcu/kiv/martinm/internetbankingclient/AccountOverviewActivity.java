@@ -28,6 +28,9 @@ import cz.zcu.kiv.martinm.internetbankingclient.domain.adapter.AccountAdapter;
 import static cz.zcu.kiv.martinm.internetbankingclient.client.Routes.REST_API_ACCOUNTS;
 import static cz.zcu.kiv.martinm.internetbankingclient.client.Routes.getRESTApi;
 
+/**
+ * Defines overview of accounts.
+ */
 public class AccountOverviewActivity extends AsyncActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -72,6 +75,9 @@ public class AccountOverviewActivity extends AsyncActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    /**
+     * Requests list of accounts from server.
+     */
     private class FetchAccounts extends AsyncTask<Void, Void, List<Account>> {
 
         @Override

@@ -16,6 +16,9 @@ import cz.zcu.kiv.martinm.internetbankingclient.TransactionsActivity;
 import cz.zcu.kiv.martinm.internetbankingclient.cache.ApplicationCache;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
 
+/**
+ * Defines adapter for Account objects based on RecyclerView.
+ */
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountViewHolder> {
 
     private Context context;

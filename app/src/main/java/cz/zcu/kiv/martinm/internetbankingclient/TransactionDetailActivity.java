@@ -13,6 +13,9 @@ import cz.zcu.kiv.martinm.internetbankingclient.cache.ApplicationCache;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Transaction;
 
+/**
+ * Defines detail of selected transaction.
+ */
 public class TransactionDetailActivity extends BaseActivity {
 
     private static final String DATE_PATTERN = "dd.MM.yyyy HH:mm";

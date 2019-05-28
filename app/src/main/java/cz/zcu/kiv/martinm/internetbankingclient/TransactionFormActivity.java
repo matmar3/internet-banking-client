@@ -1,6 +1,5 @@
 package cz.zcu.kiv.martinm.internetbankingclient;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -13,16 +12,16 @@ import com.google.gson.Gson;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import cz.zcu.kiv.martinm.internetbankingclient.client.InternetBankingRESTClient;
-import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.dto.TransactionDto;
 
+/**
+ * Defines form for performing transactions.
+ */
 public class TransactionFormActivity extends AsyncActivity {
 
     @Override
@@ -77,17 +76,21 @@ public class TransactionFormActivity extends AsyncActivity {
         transaction.setConstantSymbol(constant.getText().toString());
 
         EditText variable = findViewById(R.id.newVariable);
-        transaction.setConstantSymbol(variable.getText().toString());
+        transaction.setVariableSymbol(variable.getText().toString());
 
         EditText specific = findViewById(R.id.newSpecific);
-        transaction.setConstantSymbol(specific.getText().toString());
+        transaction.setSpecificSymbol(specific.getText().toString());
 
         EditText message = findViewById(R.id.newMessage);
-        transaction.setConstantSymbol(message.getText().toString());
+        transaction.setMessage(message.getText().toString());
 
         new PerformTransaction().execute(transaction);
     }
 
+    /**
+     * Send transaction data to server for processing. Returns TRUE if transaction was performed or
+     * FALSE when transaction is no valid.
+     */
     private class PerformTransaction extends AsyncTask<TransactionDto, Void, Boolean> {
 
         @Override

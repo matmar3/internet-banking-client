@@ -2,6 +2,9 @@ package cz.zcu.kiv.martinm.internetbankingclient;
 
 import android.app.ProgressDialog;
 
+/**
+ * Defines async activity, that display progress dialog when AsyncTask running.
+ */
 public abstract class AsyncActivity extends BaseActivity {
 
     private ProgressDialog progressDialog;

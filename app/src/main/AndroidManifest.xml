@@ -11,17 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TransactionFormActivity"></activity>
+        <activity android:name=".TransactionFormActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".TransactionDetailActivity"
-            android:parentActivityName=".TransactionsActivity" />
+            android:parentActivityName=".TransactionsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".TransactionsActivity"
-            android:parentActivityName=".AccountOverviewActivity" />
+            android:parentActivityName=".AccountOverviewActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AccountOverviewActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

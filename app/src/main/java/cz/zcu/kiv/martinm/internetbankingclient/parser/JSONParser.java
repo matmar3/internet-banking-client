@@ -11,6 +11,10 @@ import java.util.Date;
 
 import cz.zcu.kiv.martinm.internetbankingclient.domain.DataTransferObject;
 
+/**
+ * Defines generic JSON parser.
+ * @param <E> - type of entity to get from JSON
+ */
 public abstract class JSONParser<E extends DataTransferObject> implements Parser<String, E> {
 
     @SuppressWarnings("unchecked")

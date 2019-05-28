@@ -10,6 +10,9 @@ import java.util.Map;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
+/**
+ * Implements specific methods for communication with application server.
+ */
 public class InternetBankingRESTClient extends RESTClient {
 
     private static InternetBankingRESTClient instance;

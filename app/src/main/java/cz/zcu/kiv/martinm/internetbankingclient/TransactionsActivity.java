@@ -64,7 +64,7 @@ public class TransactionsActivity extends AsyncActivity {
         initScrollListener();
     }
 
-    private void setAccounts(List<Transaction> transactions) {
+    private void seeTransactions(List<Transaction> transactions) {
         if (transactions == null) {
             listItems = new ArrayList<>();
         }
@@ -76,6 +76,9 @@ public class TransactionsActivity extends AsyncActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    /**
+     * Requests list of transactions from server.
+     */
     private class FetchTransactions extends AsyncTask<Void, Void, List<Transaction>> {
 
         @Override
@@ -91,11 +94,14 @@ public class TransactionsActivity extends AsyncActivity {
         @Override
         protected void onPostExecute(List<Transaction> result) {
             dismissProgressDialog();
-            setAccounts(result);
+            seeTransactions(result);
         }
 
     }
 
+    /**
+     * Requests count of transactions from server.
+     */
     private class FetchCountOfTransactions extends AsyncTask<Void, Void, Long> {
 
         @Override

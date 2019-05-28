@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import cz.zcu.kiv.martinm.internetbankingclient.domain.DataTransferObject;
 
+/**
+ * Provides cache implementation fot DTO objects.
+ */
 public class ApplicationCache implements Cache<String, DataTransferObject> {
 
     private HashMap<String, ApplicationStorageUnit<DataTransferObject>> storage;
@@ -16,6 +19,10 @@ public class ApplicationCache implements Cache<String, DataTransferObject> {
         storage = new HashMap<>();
     }
 
+    /**
+     * Returns the only instance of this class.
+     * @return singleton
+     */
     public static ApplicationCache getInstance() {
         if (instance == null) {
             instance = new ApplicationCache();

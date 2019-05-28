@@ -1,5 +1,10 @@
 package cz.zcu.kiv.martinm.internetbankingclient.cache;
 
+/**
+ * Defines default storage unit for cache that use Long as timestamp.
+ *
+ * @param <V> - Value type
+ */
 public class ApplicationStorageUnit<V> implements StorageUnit<V, Long> {
 
     private V value;

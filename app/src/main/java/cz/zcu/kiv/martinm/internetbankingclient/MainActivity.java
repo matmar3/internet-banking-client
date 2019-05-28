@@ -15,6 +15,9 @@ import cz.zcu.kiv.martinm.internetbankingclient.client.InternetBankingRESTClient
 import cz.zcu.kiv.martinm.internetbankingclient.domain.User;
 import cz.zcu.kiv.martinm.internetbankingclient.parser.UserJSONParser;
 
+/**
+ * Defines login screen of application.
+ */
 public class MainActivity extends AsyncActivity {
 
     @Override
@@ -36,6 +39,9 @@ public class MainActivity extends AsyncActivity {
         Toast.makeText(this, response, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Send credentials to server for validation and decide to log in or not.
+     */
     private class SignUpTask extends AsyncTask<Void, Void, Boolean> {
 
         private String username;

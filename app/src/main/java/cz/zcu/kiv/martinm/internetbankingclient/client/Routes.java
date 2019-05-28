@@ -1,5 +1,8 @@
 package cz.zcu.kiv.martinm.internetbankingclient.client;
 
+/**
+ * Defines all possible routes to server that can be used.
+ */
 public class Routes {
 
     public static final String HOST_NAME = "https://internet-banking-app.herokuapp.com/";

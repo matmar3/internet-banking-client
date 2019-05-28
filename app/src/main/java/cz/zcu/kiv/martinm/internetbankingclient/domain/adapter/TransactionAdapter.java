@@ -20,6 +20,9 @@ import cz.zcu.kiv.martinm.internetbankingclient.cache.ApplicationCache;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Account;
 import cz.zcu.kiv.martinm.internetbankingclient.domain.Transaction;
 
+/**
+ * Defines adapter for Transaction objects based on RecyclerView.
+ */
 public class TransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int VIEW_TYPE_ITEM = 0;

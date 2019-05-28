@@ -2,6 +2,9 @@ package cz.zcu.kiv.martinm.internetbankingclient.domain;
 
 import java.util.Date;
 
+/**
+ * Specific info about transaction
+ */
 public class Transaction implements DataTransferObject<Integer> {
 
     private Integer id;

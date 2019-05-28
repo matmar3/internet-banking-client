@@ -20,10 +20,18 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Provides generic implementation for REST client.
+ */
 public abstract class RESTClient implements WebClient {
 
     private OkHttpClient httpClient;
 
+    /**
+     * Defines cookie cache to store SESSIONID for application. Initialize HttpClient.
+     *
+     * @param context application context
+     */
     RESTClient(Context context) {
         CookieJar cookieJar =
                 new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
